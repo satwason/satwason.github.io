@@ -1,446 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sat Wason - Portfolio</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="assets/img/xlsx.png">
 
-  <title>Sat Wason</title>
-  <meta content="Sat Wason - Strategic content consultant helping businesses grow through SEO, sales copy, and digital storytelling." name="description">
-  <meta content="digital marketing, website development, SEO, social media marketing, branding, graphic design, video editing, online advertising, business growth, marketing agency" name="keywords">
-
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  
-  
- 
- <script>
-  function toggleContent(el) {
-    const moreContent = el.nextElementSibling;
-    const isOpen = moreContent.style.display === "block";
-    moreContent.style.display = isOpen ? "none" : "block";
-    el.innerHTML = isOpen
-      ? '<i class="bi bi-arrow-right-circle"></i> Read More'
-      : '<i class="bi bi-arrow-left-circle"></i> Show Less';
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* ===== COLORS & VARIABLES ===== */
+  :root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --text-light: #ffffff;
+    --text-dark: #2c3e50;
+    --border: #bdc3c7;
+    --shadow: 0 4px 10px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
   }
-</script>
-  
-  
-  </head>
 
+  /* ===== GLOBAL STYLES ===== */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', sans-serif; background:#f5f5f5; color:var(--text-dark); scroll-behavior: smooth; }
+  a { text-decoration:none; color:inherit; }
+  ul { list-style:none; padding:0; }
+
+  /* ===== RESUME CONTAINER ===== */
+  .resume { display:flex; max-width:1200px; margin:20px auto; background:#fff; box-shadow:var(--shadow); flex-wrap:wrap; }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar { width:30%; background:var(--primary); color:var(--text-light); padding:25px; }
+  .sidebar h1 { font-size:28px; margin-bottom:5px; }
+  .sidebar p { font-size:16px; margin-bottom:20px; color:var(--secondary); }
+
+  .section { margin-bottom:25px; }
+  .section-title { font-size:18px; margin-bottom:10px; border-bottom:2px solid var(--accent); padding-bottom:5px; color:var(--text-light); }
+
+  .contact-list li { display:flex; align-items:center; margin-bottom:10px; transition:var(--transition); }
+  .contact-list li i { width:20px; height:20px; display:flex; align-items:center; justify-content:center; margin-right:10px; background:var(--secondary); border-radius:50%; font-size:10px; transition:var(--transition); }
+  .contact-list li:hover i { background:var(--accent); transform:scale(1.1); }
+
+  /* ===== SKILLS ===== */
+  .skills-list li { margin-bottom:15px; }
+  .skill-bar { width:100%; height:6px; border-radius:3px; background:rgba(255,255,255,0.2); overflow:hidden; margin-top:5px; }
+  .skill-level { height:100%; background:var(--secondary); border-radius:3px; width:0; transition:width 1.5s ease-out; }
+
+  /* ===== MAIN CONTENT ===== */
+  .main-content { width:70%; padding:25px; }
+  .section-title-main { font-size:20px; color:var(--primary); margin-bottom:15px; border-bottom:2px solid var(--accent); padding-bottom:5px; }
+
+  .experience-item, .project-card { 
+    margin-bottom:20px; 
+    padding:15px; 
+    border-radius:5px; 
+    background:var(--light); 
+    box-shadow:var(--shadow); 
+    transition:var(--transition); 
+  }
+  .experience-item:hover, .project-card:hover { 
+    transform:translateY(-3px); 
+    box-shadow:0 6px 12px rgba(0,0,0,0.15); 
+  }
+
+  .job-title { font-size:18px; font-weight:600; color:var(--primary); margin-bottom:5px; }
+  .company, .school { font-size:16px; font-weight:500; color:var(--secondary); margin-bottom:5px; }
+  .date { font-size:14px; color:var(--accent); font-weight:500; margin-bottom:10px; }
+
+  .responsibilities li { position:relative; padding-left:20px; margin-bottom:8px; font-size:14px; }
+  .responsibilities li::before { content:'▸'; position:absolute; left:0; color:var(--accent); font-size:16px; }
+
+  /* ===== TECH TAGS ===== */
+  .tech-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .tech-tag { background:var(--light); color:var(--primary); padding:5px 10px; border-radius:15px; font-size:12px; font-weight:500; cursor:pointer; transition:var(--transition); }
+  .tech-tag:hover { background:var(--secondary); color:var(--text-light); transform:translateY(-2px); }
+
+  /* ===== PROJECTS GRID ===== */
+  .projects-grid { display: flex; flex-direction: column; gap: 20px; margin-top: 15px; }
+  .project-card img { width:100%; border-radius:8px; }
+  .project-card h4 { margin-top:10px; margin-bottom:5px; font-size:16px; color:var(--primary); }
+  .project-card p { font-size:14px; margin-bottom:5px; }
+  .project-summary { font-size:13px; color:#555; margin-bottom:10px; }
+
+  /* ===== DOWNLOAD LINKS ===== */
+  .download-links { margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; }
+  .download-links a { display:inline-flex; align-items:center; text-decoration:none; background-color:var(--secondary); color:var(--text-light); padding:6px 12px; border-radius:5px; font-size:0.9rem; transition: background-color 0.3s; }
+  .download-links a:hover { background-color:var(--accent); }
+  .download-links img.excel-icon { width:18px; height:18px; margin-right:5px; filter: invert(100%); }
+
+  /* ===== PROFESSIONAL SUMMARY CARD ===== */
+  .summary-card { background: var(--light); padding:15px; border-radius:8px; box-shadow:var(--shadow); margin-bottom:20px; transition: var(--transition); text-align:left; }
+  .summary-card:hover { transform: translateY(-3px); box-shadow:0 6px 12px rgba(0,0,0,0.15); }
+  
+  .responsibility-desc { font-size:13px; color:#555; margin-top:3px; margin-left:20px; }
+
+  /* ===== PROJECT BUTTON ===== */
+  .project-btn {
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 24px;
+    font-size:16px;
+    font-weight:600;
+    background:var(--secondary);
+    color:var(--text-light);
+    border-radius:8px;
+    box-shadow:var(--shadow);
+    transition:var(--transition);
+  }
+  .project-btn:hover {
+    background:var(--accent);
+    transform:translateY(-2px);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:768px){ .resume{flex-direction:column;} .sidebar, .main-content{width:100%; padding:15px;} }
+</style>
+</head>
 <body>
 
-  <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+<div class="resume">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h1>Sat Wason</h1>
+    <p>Quantitative Data Scientist & Algo Developer</p>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
+    <div class="section">
+      <h2 class="section-title">Contact</h2>
+      <ul class="contact-list">
+        <li><i class="fas fa-map-marker-alt"></i> Sohna, Gurgaon, India</li>
+        <li><i class="fas fa-phone"></i> +91-8375828957</li>
+        <li><i class="fas fa-envelope"></i> satsatishwason@gmail.com</li>
+        <li><i class="fab fa-github"></i> github.com/satwason</li>
+      </ul>
+    </div>
 
-      <div class="profile">
-  <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-  <h1 class="text-light"><a href="index.html" target="_blank" rel="noopener noreferrer">Sat Wason</a></h1>
-  <div class="social-links mt-3 text-center">
-    <a href="https://x.com/ss_wason" class="twitter" target="_blank" rel="noopener noreferrer"><i class="bx bxl-twitter"></i></a>
-    <a href="#" class="facebook" target="_blank" rel="noopener noreferrer"><i class="bx bxl-facebook"></i></a>
-    <a href="https://www.instagram.com/satwason/" class="instagram" target="_blank" rel="noopener noreferrer"><i class="bx bxl-instagram"></i></a>
-    <a href="https://www.linkedin.com/in/sat-w-6ba52341" class="linkedin" target="_blank" rel="noopener noreferrer"><i class="bx bxl-linkedin"></i></a>
+    <div class="section">
+      <h2 class="section-title">Skills</h2>
+      <ul class="skills-list">
+        <li>Python <div class="skill-bar"><div class="skill-level" style="width:90%"></div></div></li>
+        <li>SQL & SQLite <div class="skill-bar"><div class="skill-level" style="width:85%"></div></div></li>
+        <li>Data Analysis & Visualization <div class="skill-bar"><div class="skill-level" style="width:90%"></div></div></li>
+        <li>Machine Learning & Random Forest <div class="skill-bar"><div class="skill-level" style="width:80%"></div></div></li>
+        <li>Algorithmic Trading & Backtesting <div class="skill-bar"><div class="skill-level" style="width:75%"></div></div></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Education</h2>
+      <p class="school">Kenyatta University, Nairobi, Kenya</p>
+      <p>Agro Forestry in Agriculture (1995-1998) – 71.8%</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <h2 class="section-title-main">Professional Summary</h2>
+    <div class="summary-card">
+      <p>Quantitative data scientist and algorithmic trading enthusiast with expertise in Python-based analytics pipelines, financial data modeling, backtesting, and machine learning for time-series forecasting. Experienced in feature engineering, reproducible ML workflows, and portfolio-level strategy evaluation. Demonstrates ability to implement statistical tests, risk metrics, and automation to support data-driven investment decisions. Future work includes transaction-cost modeling, vectorized backtesting, and automated PDF/Excel reporting for enhanced production-readiness.</p>
+      
+      <!-- Project Button -->
+      <a href="#projects" class="project-btn">🚀 View My Projects</a>
+    </div>
+
+    <h2 class="section-title-main">Experience</h2>
+    <div class="experience-item">
+      <h3 class="job-title">Freelance Quantitative Data Scientist & Digital Strategist</h3>
+      <p class="date">Jan 2012 - Present</p>
+      <ul class="responsibilities">
+        <li>
+          Developed end-to-end financial analytics pipelines and ML models.
+          <p class="responsibility-desc">Implemented feature engineering, technical indicators, and time-series models (Random Forest, lag features, volatility indicators) to generate actionable trading signals.</p>
+        </li>
+        <li>
+          Built automated data ingestion, cleaning, and reporting pipelines.
+          <p class="responsibility-desc">Ensured reproducibility by saving models, reports, and experiment logs in CSV, SQLite, and Excel formats.</p>
+        </li>
+        <li>
+          Performed backtesting and risk analysis.
+          <p class="responsibility-desc">Computed equity curves, drawdowns, Sharpe ratios, and statistical validations for multiple time horizons, highlighting potential strategy performance.</p>
+        </li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Machine Learning</span>
+        <span class="tech-tag">Backtesting</span>
+        <span class="tech-tag">SQL</span>
+        <span class="tech-tag">Feature Engineering</span>
+      </div>
+    </div>
+
+    <div class="experience-item">
+      <h3 class="job-title">Team Lead – NEDGE Technologies</h3>
+      <p class="date">Apr 2016 - Apr 2024</p>
+      <ul class="responsibilities">
+        <li>
+          Led team to improve data quality and analytics automation.
+          <p class="responsibility-desc">Implemented validation checks, reproducible workflows, and dashboards to enhance operational efficiency and ensure accurate decision support.</p>
+        </li>
+        <li>
+          Built and deployed KPI dashboards and experiment logs.
+          <p class="responsibility-desc">Tracked performance metrics and maintained versioned experiment records to ensure clarity and reproducibility for stakeholders.</p>
+        </li>
+        <li>
+          Optimized algorithmic workflows and client-facing data products.
+          <p class="responsibility-desc">Delivered actionable insights from historical and ML-modeled market data to improve trading strategy evaluation and risk management.</p>
+        </li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">Team Leadership</span>
+        <span class="tech-tag">Data Engineering</span>
+        <span class="tech-tag">Dashboards</span>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <h2 id="projects" class="section-title-main">Key Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>Comprehensive Nifty50 Analytics Pipeline</h4>
+        <p class="project-summary">
+          End-to-end Python pipeline for Nifty 50: data ingestion, validation, and storage (CSV, Excel, SQLite), with advanced technical indicators, GARCH/EWMA volatility modeling, feature engineering, and ML-based predictive modeling. Includes backtesting with transaction costs & slippage, performance metrics, visualizations, and reproducible experiment logging. Designed for scalability, reproducibility, and detailed analytics reporting.
+        </p>
+        <div class="download-links">
+          <!-- JS forced download for .py -->
+          <a href="#" onclick="downloadFile('assets/nifty/nifty50_comprehensive_analysis.py','nifty50_comprehensive_analysis.py'); return false;">
+            Download Code
+          </a>
+          <!-- Normal Excel download -->
+          <a href="assets/nifty/Nifty_50_Historical_Data.xlsx" download>
+            <img src="assets/img/xlsx.png" alt="Excel" class="excel-icon"> Download Data
+          </a>
+        </div>
+        <img src="assets/img/nifty50_advanced_analysis_1y.png" alt="Pipeline Output">
+      </div>
+
+      <div class="project-card">
+        <h4>Comprehensive Nifty50 Analytics Pipeline (improoved)</h4>
+        <p class="project-summary">
+          End-to-end Python pipeline for Nifty 50: data ingestion, validation, and storage (CSV, Excel, SQLite), with advanced technical indicators, GARCH/EWMA volatility modeling, feature engineering, and ML-based predictive modeling. Includes backtesting with transaction costs & slippage, performance metrics, visualizations, and reproducible experiment logging. Designed for scalability, reproducibility, and detailed analytics reporting.
+        </p>
+        <div class="download-links">
+          <!-- JS forced download for .py -->
+          <a href="#" onclick="downloadFile('assets/nifty/nifty50_comprehensive_analysis.py','nifty50_comprehensive_analysis.py'); return false;">
+            Download Code
+          </a>
+          <!-- Normal Excel download -->
+          <a href="assets/nifty/Nifty_50_Historical_Data.xlsx" download>
+            <img src="assets/img/xlsx.png" alt="Excel" class="excel-icon"> Download Data
+          </a>
+        </div>
+        <img src="assets/img/nifty50_advanced_analysis_1y.png" alt="Pipeline Output">
+      </div>
+    </div>
   </div>
 </div>
 
-
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
-		  <li><a href="#blog" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Blog</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-  <h1>SAT WASON</h1>
-  <p>
-  <strong><em>Sales-Focused Content Strategy</em></strong><br><br>
-  <span class="typed" data-typed-items="Brand Promoter, Performance Enhancer, Content Strategist, SEO Specialist, Sales Copywriter, Digital Growth Partner, Freelance Consultant, Visibility Expert, Academic Writer, Lead Generation Expert, Online Publishing Advisor, Conversion Copywriter, Marketing Storyteller, Client Acquisition Specialist"></span>
-</p>
-
-</div>
-
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-<section id="about" class="about">
-  <div class="container">
-
-    <div class="section-title">
-      <h2>About</h2>
-      <h3 style='font-size:16px;font-family:"Arial","sans-serif";margin-bottom:10px;'>Your Strategic Partner in Driving Sales Through Content</h3>
-      <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'>
-        <span style='font-family:"Arial","sans-serif";'>
-          I’m Sat Wason, a senior content and digital marketing consultant with 15+ years of experience delivering impactful strategies that drive real results. My focus is straightforward: helping your business scale, sell, and succeed using content that’s crafted to convert — not just communicate.
-        </span>
-      </p>
-      <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'>
-        <span style='font-family:"Arial","sans-serif";'>
-          From high-converting website copy to SEO-driven blog strategies, I transform brand messaging into business outcomes. I collaborate with startups, entrepreneurs, and established firms to develop content that supports every stage of the customer journey and delivers measurable ROI.
-        </span>
-      </p>
-      <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'>
-        <span style='font-family:"Arial","sans-serif";'>
-          Whether you’re launching, scaling, or repositioning, I bring a data-informed and business-centric approach to content. My past engagements with NEDGE TECHNOLOGIES and ABSAS Solutions involved leading content strategy, solving complex marketing challenges, and elevating customer experience — all tied to performance metrics.
-        </span>
-      </p>
-      <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'>
-        <span style='font-family:"Arial","sans-serif";'>
-          My work consistently results in improved search visibility, stronger engagement, and higher conversions. Every piece I produce is aligned with your strategic goals — designed not just to inform, but to influence decisions.
-        </span>
-      </p>
-      <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'>
-  <span style='font-family:"Arial","sans-serif";'>
-    Based in New Delhi, I provide remote consulting services to businesses worldwide. If you're looking for a trusted content partner who understands growth, storytelling, and sales — let's talk. Together, we'll create content that not only speaks, but performs.
-  </span>
-</p>
-
-<p style='margin-top:20px;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'>
-  <span style='font-family:"Arial","sans-serif";'>
-    <strong>Helping Businesses Sell More, Grow Faster, and Perform Better.</strong>
-  </span>
-</p>
-
-    </div>
-
-  </div>
-</section><!-- End About Section -->
-
-<!-- Facts Section -->
-
-<section id="facts" class="facts">
-  <div class="container">
-
-    <div class="section-title">
-      <h2>Facts</h2>
-      <p>With over 15 years of experience in driving sales and accelerating brand growth, I partner with businesses to deliver strategic content, SEO, and digital marketing solutions. Based in New Delhi, I consult remotely with startups, agencies, and enterprise brands to help them increase conversions, strengthen visibility, and scale with purpose-driven strategies.</p>
-    </div>
-
-    <div class="row no-gutters">
-
-      <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-        <div class="count-box">
-          <i class="bi bi-emoji-smile"></i>
-          <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="3" class="purecounter"></span>
-          <p><strong>Years of Sales-Focused Experience</strong> Helping brands sell more and grow faster through high-impact content and digital strategies since 2007.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-        <div class="count-box">
-          <i class="bi bi-journal-richtext"></i>
-          <span data-purecounter-start="0" data-purecounter-end="44" data-purecounter-duration="3" class="purecounter"></span>
-          <p><strong>Growth-Driven Brands Supported</strong> Partnered with 44 businesses to elevate brand performance and increase revenue.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-        <div class="count-box">
-          <i class="bi bi-headset"></i>
-          <span data-purecounter-start="0" data-purecounter-end="27" data-purecounter-duration="3" class="purecounter"></span>
-          <p><strong>Revenue-Oriented Campaigns</strong> Launched and led 27 digital projects focused on sales enablement, lead generation, and brand positioning.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-        <div class="count-box">
-          <i class="bi bi-people"></i>
-          <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="3" class="purecounter"></span>
-          <p><strong>Global Reach</strong> Delivered remote consulting services to businesses in 5 countries, with proven impact on sales growth and brand equity.</p>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section><!-- End Facts Section -->
-
-
-
-    <!-- ======= Skills Section ======= -->
-<section id="skills" class="skills section-bg">
-  <div class="container">
-
-    <div class="section-title">
-      <h2>Skills</h2>
-      <p>With 15+ years of experience, I specialize in creating sales-focused content, executing data-driven SEO strategies, and developing brand-centric marketing funnels. My expertise spans content strategy, lead generation, digital analytics, and messaging that drives conversions—equipping businesses to scale, sell more, and grow faster across markets.</p>
-    </div>
-
-    <div class="row skills-content">
-
-      <div class="col-lg-6" data-aos="fade-up">
-
-        <div class="progress">
-          <span class="skill">Strategic Content Marketing <i class="val">95%</i></span>
-          <div class="progress-bar-wrap">
-            <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="progress">
-          <span class="skill">Sales-Driven SEO <i class="val">90%</i></span>
-          <div class="progress-bar-wrap">
-            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="progress">
-          <span class="skill">Conversion Optimization (CRO) <i class="val">90%</i></span>
-          <div class="progress-bar-wrap">
-            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="progress">
-          <span class="skill">Digital Marketing Strategy & Analytics <i class="val">92%</i></span>
-          <div class="progress-bar-wrap">
-            <div class="progress-bar" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="progress">
-          <span class="skill">Brand Messaging & Positioning <i class="val">93%</i></span>
-          <div class="progress-bar-wrap">
-            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="progress">
-          <span class="skill">Email & Funnel Marketing <i class="val">85%</i></span>
-          <div class="progress-bar-wrap">
-            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section><!-- End Skills Section -->
-
-
-    
-     <!-- ======= Services Section ======= -->
-<section id="services" class="services">
-  <div class="container">
-
-    <div class="section-title">
-      <h2>Services</h2>
-      <p>I offer performance-focused digital marketing services designed to boost brand visibility, drive qualified leads, and increase sales. From high-impact content marketing to advanced SEO, email funnels, and brand messaging strategy, each service is tailored to grow businesses through measurable, data-driven strategies.</p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-        <div class="icon"><i class="bi bi-briefcase"></i></div>
-        <h4 class="title"><a href="">Content Strategy and Conversion Copywriting:</a></h4>
-        <p class="description">Developing data-backed content strategies and persuasive copy that drive traffic, increase engagement, and lead to higher conversions across websites, landing pages, and product listings.</p>
-      </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-        <div class="icon"><i class="bi bi-card-checklist"></i></div>
-        <h4 class="title"><a href="">SEO for Sales and Traffic Growth:</a></h4>
-        <p class="description">Implementing SEO strategies that not only boost search rankings but also drive relevant traffic to convert into customers. Ideal for long-term brand positioning and sustained growth.</p>
-      </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-        <div class="icon"><i class="bi bi-bar-chart"></i></div>
-        <h4 class="title"><a href="">Digital Funnels & Email Marketing:</a></h4>
-        <p class="description">Creating full-funnel marketing journeys—from lead capture to nurturing and conversion—using email automation, lead magnets, and CRM-driven segmentation strategies.</p>
-      </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-        <div class="icon"><i class="bi bi-binoculars"></i></div>
-        <h4 class="title"><a href="">Brand Messaging and Positioning:</a></h4>
-        <p class="description">Helping brands clarify their voice, define unique value propositions, and craft consistent messaging that resonates with ideal audiences across all platforms.</p>
-      </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-        <div class="icon"><i class="bi bi-brightness-high"></i></div>
-        <h4 class="title"><a href="">Sales-Focused Content Creation:</a></h4>
-        <p class="description">Creating high-performing blogs, whitepapers, and ad copy designed to generate leads, support buyer decisions, and ultimately close more sales.</p>
-      </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-        <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-        <h4 class="title"><a href="">Analytics & Performance Optimization:</a></h4>
-        <p class="description">Monitoring content and campaign performance using tools like GA4, Search Console, and heatmaps to make data-driven improvements that scale growth.</p>
-      </div>
-    </div>
-
-  </div>
-</section><!-- End Services Section -->
-
-	
-		<!-- ======= Blog Section ======= -->
-<section id="blog" class="blog section-bg">
-  <div class="container">
-    <div class="section-title">
-      <h2>Blog</h2>
-      <p>Insights, strategies, and stories to help you grow your brand, convert better, and master content that sells.</p>
-    </div>
-
-    <div class="row gy-4">
-
-      <!-- Blog Card 1 -->
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="assets/img/blog1-thumb.jpg" class="card-img-top img-fluid blog-thumbnail" alt="Blog Preview Image">
-          <div class="card-body">
-            <h5 class="card-title">How to Turn Website Copy Into a Sales Engine</h5>
-            <a href="blog/blog1.html" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog Card 2 -->
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="assets/img/blog1-thumb.jpg" class="card-img-top img-fluid blog-thumbnail" alt="Blog Preview Image">
-          <div class="card-body">
-            <h5 class="card-title">Next Blog Coming</h5>
-            <a href="blog.html#blog2" class="btn btn-primary">Read More</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog Card 3 -->
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="assets/img/blog1-thumb.jpg" class="card-img-top img-fluid blog-thumbnail" alt="Blog Preview Image">
-          <div class="card-body">
-            <h5 class="card-title">Stay Tuned</h5>
-            <a href="blog.html#blog3" class="btn btn-primary">Read More</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section><!-- End Blog Section -->
-	
-
-   <!-- ======= Contact Section ======= -->
-<section id="contact" class="contact">
-  <div class="container">
-
-    <div class="section-title">
-      <h2>Contact</h2>
-      <p>Reach out for professional inquiries, collaborations, or tailored content needs. Let's connect to explore opportunities for content development, educational support, or collaborative projects. Looking forward to hearing from you!</p>
-    </div>
-
-    <div class="row" data-aos="fade-in">
-
-      <!-- Contact Information -->
-      <div class="col-lg-6 d-flex align-items-stretch">
-        <div class="info w-100">
-          <div class="address">
-            <i class="bi bi-geo-alt"></i>
-            <h4>Location:</h4>
-            <p>New Delhi, India</p>
-          </div>
-
-          <div class="email">
-            <i class="bi bi-envelope"></i>
-            <h4>Email:</h4>
-            <p>sat satish wason @gmail.com</p>
-          </div>
-
-          <div class="phone">
-            <i class="bi bi-phone"></i>
-            <h4>Call:</h4>
-            <p>+91 83758 28957</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Map Panel -->
-      <div class="col-lg-6 d-flex align-items-stretch">
-        <div class="info w-100">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d47534.51865385303!2d77.239236!3d28.544249!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce22d407e1085%3A0x75857374e839e2ed!2sGreater%20Kailash%2C%20New%20Delhi%2C%20Delhi%20110048!5e1!3m2!1sen!2sin!4v1700642558533!5m2!1sen!2sin" width="100%" height="100%" style="border:0; min-height: 300px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section><!-- End Contact Section -->
-
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-  <div class="copyright">
-    &copy; Copyright <strong><span>Sat Wason</span></strong>
-  </div>
-  <div class="credits">
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | Customized by Sat Wason
-  </div>
-</div>
-
-  </footer><!-- End  Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-  
-  <script>
-  function toggleContent(el) {
-    const moreContent = el.nextElementSibling;
-    if (moreContent.style.display === "none" || !moreContent.style.display) {
-      moreContent.style.display = "block";
-      el.innerHTML = '<i class="bi bi-arrow-left-circle"></i> Show Less';
-    } else {
-      moreContent.style.display = "none";
-      el.innerHTML = '<i class="bi bi-arrow-right-circle"></i> Read More';
+<script>
+  // Animate skill bars
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.skill-level').forEach(bar=>{
+      const w = bar.style.width; bar.style.width='0';
+      setTimeout(()=>{bar.style.width=w;},500);
+    });
+  });
+
+  // Force download function for .py files
+  async function downloadFile(filePath, fileName) {
+    try {
+      const response = await fetch(filePath);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('File download failed: ' + err);
     }
   }
 </script>
-
-
 </body>
-
 </html>
