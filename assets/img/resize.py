@@ -3,7 +3,7 @@ import os
 
 # ===== CONFIGURATION =====
 input_folder = r"C:\Users\Wason\Documents\GitHub\satwason.github.io\assets\img"
-image_name = "preference_analysis.png"  # Change this to the file you want to resize
+image_name = "combined_soil_air_temperature_analysis.png"  # Change this to the file you want to resize
 output_folder = os.path.join(input_folder, "resized")
 new_width = 1200   # Desired width (pixels)
 new_height = 600  # Desired height (pixels)
